@@ -31,10 +31,10 @@ class Thermometer(QtWidgets.QWidget):
         painter.end()
 
     def initDrawing(self, painter):
-        self.normal = 25.0
-        self.critical = 75.0
-        self.m_min = 0.0
-        self.m_max = 80.0
+        self.normal = 35.0
+        self.critical = 38.0
+        self.m_min = 30.0
+        self.m_max = 40.0
         painter.setRenderHint(QtGui.QPainter.Antialiasing)
         painter.translate(self.width()/2.0, 0.0)
         painter.scale(self.height()/300.0, self.height()/300.0)
@@ -99,7 +99,7 @@ class Thermometer(QtWidgets.QWidget):
         scale.setColorAt(0.0, color)
         bulb.setColorAt(0.0, color)
         factor = self.value - self.m_min
-        factor = (factor/self.m_max)-self.m_min
+        factor = (factor/(self.m_max-self.m_min))
         temp = SCALE_HEIGHT * factor
         height = temp + OFFSET
         painter.setPen(QtCore.Qt.NoPen)
